@@ -22,8 +22,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_main_page(self):
         response = self.app.get('/', follow_redirects=True)
-        self.assertIn(b'Welcome to Mario\'s Recipe app!', response.data)
-        self.assertIn(b'This site describes our favorite family recipes!', response.data)
+        self.assertIn(b'Mario\'s Recipes', response.data)
         self.assertIn(b'Breakfast Recipes', response.data)
         self.assertIn(b'Lunch Recipes', response.data)
         self.assertIn(b'Dinner Recipes', response.data)
