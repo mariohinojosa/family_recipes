@@ -1,5 +1,6 @@
 from project import db
 
+
 class Recipe(db.Model):
     """docstring for Recipe"""
     __tablename__ = "recipes"
@@ -14,3 +15,18 @@ class Recipe(db.Model):
 
     def __repr__(self):
         return 'title {}'.format(self.name)
+
+
+class User(db.Model):
+    """docstring for User"""
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String, unique=True, nullable=False)
+    password_plaintext = db.Column(db.String, nullable=False)
+
+    def __init__(self, email, password_plaintext):
+        self.email = email
+        self.password_plaintext = password_plaintext
+
+    def __repr__(self):
+        return '<User {0}>'.format(self.name)
