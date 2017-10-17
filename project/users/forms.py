@@ -12,3 +12,11 @@ class RegisterForm(Form):
                                                      Length(min=6, max=40)])
     confirm = PasswordField('Repeat Password', validators=[DataRequired(),
                                                            EqualTo('password')])
+
+
+class LoginForm(Form):
+    """docstring for LoginForm"""
+    email = StringField('Email', validators=[DataRequired(),
+                                             Email(),
+                                             Length(min=6, max=40)])
+    password = PasswordField('Password', validators=[DataRequired()])
