@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('flask.cfg')
 
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -19,8 +21,10 @@ from project.models import User
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
+
 from project.users.views import users_blueprint
 from project.recipes.views import recipes_blueprint
+
 
 # register the blueprints
 app.register_blueprint(users_blueprint)
