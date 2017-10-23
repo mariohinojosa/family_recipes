@@ -26,11 +26,17 @@ class User(db.Model):
     email = db.Column(db.String, unique=True, nullable=False)
     _password = db.Column(db.Binary(60), nullable=False)
     authenticated = db.Column(db.Boolean, default=False)
+    email_confirmation_sent_on = db.Column(db.DateTime, nullable=True)
+    email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
+    email_confirmed_on = db.Column(db.DateTime, nullable=True)
 
-    def __init__(self, email, password_plaintext):
+    def __init__(self, email, password_plaintext, email_confirmation_sent_on=None):
         self.email = email
         self.password = password_plaintext
         self.authenticated = False
+        self.email_confirmation_sent_on = email_confirmation_sent_on
+        self.email_confirmed = False
+        self.email_confirmed_on = None
 
     @hybrid_property
     def password(self):
