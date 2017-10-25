@@ -20,3 +20,15 @@ class LoginForm(Form):
                                              Email(),
                                              Length(min=6, max=40)])
     password = PasswordField('Password', validators=[DataRequired()])
+
+
+class EmailForm(Form):
+    """docstring for EmailForm"""
+    email = StringField('Email', validators=[DataRequired(),
+                                             Email(),
+                                             Length(min=6, max=40)])
+
+
+class PasswordForm(Form):
+    """docstring for PasswordForm"""
+    password = PasswordField('Password', validators=[DataRequired()])
